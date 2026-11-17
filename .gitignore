@@ -1,0 +1,15 @@
+/build/
+/cmake-build-*/
+CMakeUserPresets.json
+
+# IDE settings
+.idea/
+.vscode/
+
+# Compiled artifacts
+*.spv
+VulkanEngine
+
+# Platform files
+.DS_Store
+Thumbs.db

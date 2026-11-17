@@ -782,8 +782,8 @@ void createRenderPass(){
 
 void createGraphicsPipeline(){
 
-    auto vertshaderCode = readFile("vert.spv");
-    auto fragshaderCode = readFile("frag.spv");
+    auto vertshaderCode = readFile(std::string(VULKAN_ENGINE_SHADER_DIR) + "/vert.spv");
+    auto fragshaderCode = readFile(std::string(VULKAN_ENGINE_SHADER_DIR) + "/frag.spv");
 
     VkShaderModule vertShaderModule = createShaderModule(vertshaderCode);
     VkShaderModule fragShaderModule = createShaderModule(fragshaderCode);
@@ -1270,7 +1270,7 @@ uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties){
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;
     std::string warn , err;
-    if (!tinyobj::LoadObj(&attrib , &shapes, &materials ,&warn , &err , "viking_room.obj")){
+    if (!tinyobj::LoadObj(&attrib , &shapes, &materials ,&warn , &err , (std::string(VULKAN_ENGINE_RESOURCE_DIR) + "/objects/viking_room.obj").c_str())){
         throw std::runtime_error(warn+ err);
     }
 
@@ -1402,7 +1402,7 @@ void createTextureImage(){
     int texWidth , texHeight , texChannels;
 
     // tell stb_image to read the file and force it to have an alpha channel
-    stbi_uc* pixels = stbi_load("viking_room.png", &texWidth, &texHeight, &texChannels,STBI_rgb_alpha);
+    stbi_uc* pixels = stbi_load((std::string(VULKAN_ENGINE_RESOURCE_DIR) + "/textures/viking_room.png").c_str(), &texWidth, &texHeight, &texChannels,STBI_rgb_alpha);
 
     //calculate the total size of image in bytes ( width * height x4 bytes)
 
